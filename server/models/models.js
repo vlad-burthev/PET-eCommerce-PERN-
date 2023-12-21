@@ -49,6 +49,7 @@ export const Device = connectToDb.define(
     slug: { type: DataTypes.STRING, allowNull: false, unique: true },
     image: { type: DataTypes.STRING, allowNull: false },
     price: { type: DataTypes.INTEGER, allowNull: false },
+    sale: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
     amount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
     description: { type: DataTypes.STRING, allowNull: false },
     //brand_id
