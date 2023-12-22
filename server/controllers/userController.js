@@ -111,7 +111,7 @@ export const registration = async (req, res, next) => {
     const createdCart = await UserCart.create({ userId: createdUser.id });
 
     const token = createJWT({
-      id: createdCart,
+      id: createdUser,
       name,
       phone,
       email,
@@ -125,6 +125,28 @@ export const registration = async (req, res, next) => {
   } catch (error) {
     return next(ApiError.badRequest(error.message));
   }
+};
+
+export const check = async (req, res, next) => {
+  const token = createJWT(
+    req.user.id,
+    req.user.email,
+    req.user.phone,
+    req.user.name,
+    req.user.role,
+    req.user.image
+  );
+  return res.json({
+    token,
+    user: {
+      id: req.user.id,
+      email: req.user.email,
+      phone: req.user.phone,
+      name: req.user.name,
+      role: req.user.role,
+      image: req.user.image,
+    },
+  });
 };
 
 export const deleteUser = async (req, res, next) => {
@@ -142,6 +164,15 @@ export const deleteUser = async (req, res, next) => {
     await existedUser.destroy();
 
     return res.status(200).json("User successfully deleted");
+  } catch (error) {
+    return next(ApiError.badRequest(error.message));
+  }
+};
+
+export const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.findAll();
+    return res.status(200).json(users);
   } catch (error) {
     return next(ApiError.badRequest(error.message));
   }
