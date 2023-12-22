@@ -13,7 +13,7 @@ import sharp from "sharp";
 
 import * as path from "path";
 import { fileURLToPath } from "url";
-import fs from "fs";
+import { Op } from "sequelize";
 
 //path
 const __filename = fileURLToPath(import.meta.url);
@@ -122,7 +122,7 @@ export const deleteDevice = async (req, res, next) => {
 export const changeDevice = async (req, res, next) => {
   try {
     const { slug } = req.params;
-    const { name, price, description } = req.body;
+    const { name, price, description, sale } = req.body;
 
     const existingDevice = await Device.findOne({
       where: { slug },
@@ -135,6 +135,7 @@ export const changeDevice = async (req, res, next) => {
     existingDevice.name = name || existingDevice.name;
     existingDevice.price = price || existingDevice.price;
     existingDevice.description = description || existingDevice.description;
+    existingDevice.sale = sale || existingDevice.description;
     if (name) {
       const newSlug = convertSlug(name);
       existingDevice.slug = newSlug || existingDevice.slug;
@@ -244,6 +245,21 @@ export const addRating = async (req, res, next) => {
     } else {
       return res.status(201).json(existingRating);
     }
+  } catch (error) {
+    return next(ApiError.badRequest(error.message));
+  }
+};
+
+export const getSaleDevices = async (req, res, next) => {
+  try {
+    const saleDevices = await Device.findAll({
+      where: {
+        sale: {
+          [Op.gt]: 0,
+        },
+      },
+    });
+    return res.status(200).json(saleDevices);
   } catch (error) {
     return next(ApiError.badRequest(error.message));
   }
