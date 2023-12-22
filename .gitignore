@@ -8,3 +8,4 @@ images
 client
 
 #server
+server/static/*
