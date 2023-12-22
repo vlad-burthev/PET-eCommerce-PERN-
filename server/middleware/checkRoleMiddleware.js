@@ -1,6 +1,7 @@
 import { configDotenv } from "dotenv";
 
 import { ApiError } from "../error/ApiError.js";
+import jwt from "jsonwebtoken";
 
 configDotenv();
 
@@ -9,10 +10,12 @@ export const checkRoleMiddleware = (role) => {
     if (req.method === "OPTIONS") next();
 
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
+      const existToken = req.headers.authorization;
+      if (!existToken) {
         return next(ApiError.forbidden("Unauthorized"));
       }
+
+      const token = req.headers.authorization.split(" ")[1];
 
       const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
 
@@ -23,7 +26,7 @@ export const checkRoleMiddleware = (role) => {
       req.user = decodedToken;
       next();
     } catch (error) {
-      return next(ApiError.unauthorization(error.message));
+      return next(ApiError.unauthorized(error.message));
     }
   };
 };
