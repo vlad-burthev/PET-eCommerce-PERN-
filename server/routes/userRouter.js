@@ -14,6 +14,8 @@ export const userRouter = new Router();
 //user routes
 userRouter.post("/login", login);
 userRouter.post("/registration", registration);
+
+//auth routes
 userRouter.get("/check", checkAuthMiddleware, check);
 
 //admin routes
