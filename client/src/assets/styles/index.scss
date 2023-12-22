@@ -1,0 +1,27 @@
+@import "reset";
+@import "device-width";
+
+//fonts
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Sevillana&display=swap");
+
+:root {
+  --font-family: "Quicksand", sans-serif;
+  --body-bg: #bcb788;
+  --color-black: #1c1b11;
+  --color-primary: #3f3226;
+  --color-olive-dark: #695e44;
+  --color-olive: #9d936c;
+  --color-olive-light: #bcb788;
+  --color-white: #fff;
+  --decoration-font: "Sevillana", cursive;
+}
+
+body {
+  background-color: var(--body-bg);
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--color-primary);
+  line-height: normal;
+}

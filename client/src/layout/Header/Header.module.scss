@@ -1,0 +1,32 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  grid-area: header;
+  background-color: var(--color-white);
+  padding: 10px 0;
+  border-bottom: 2px solid var(--color-primary);
+  box-shadow: 2px 0px 5px var(--color-black);
+
+  & .container {
+    width: 1400px;
+    margin: 0 auto;
+  }
+
+  & .content {
+    display: grid;
+    grid-template-columns: 400px 1fr 400px;
+    & .logo {
+      & .title {
+        cursor: pointer;
+        color: var(--color-primary);
+        & span {
+          font-family: var(--decoration-font);
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}
