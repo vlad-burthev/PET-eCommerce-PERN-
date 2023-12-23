@@ -1,5 +1,6 @@
 .header {
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   right: 0;
@@ -10,14 +11,10 @@
   border-bottom: 2px solid var(--color-primary);
   box-shadow: 2px 0px 5px var(--color-black);
 
-  & .container {
-    width: 1400px;
-    margin: 0 auto;
-  }
-
   & .content {
     display: grid;
     grid-template-columns: 400px 1fr 400px;
+
     & .logo {
       & .title {
         cursor: pointer;
@@ -26,6 +23,15 @@
           font-family: var(--decoration-font);
           font-size: 28px;
         }
+      }
+    }
+
+    & .btn-box {
+      display: flex;
+      justify-content: end;
+
+      & .login-btn {
+        margin-right: 20px;
       }
     }
   }

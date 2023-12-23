@@ -1,0 +1,26 @@
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: var(--transition);
+
+  &.primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    &:hover {
+      background-color: var(--color-olive);
+    }
+  }
+
+  &.ghost {
+    border: 2px solid var(--color-primary);
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--color-olive);
+      color: var(--color-white);
+    }
+  }
+}

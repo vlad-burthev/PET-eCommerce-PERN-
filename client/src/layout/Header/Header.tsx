@@ -1,15 +1,21 @@
 import type { FC } from "react";
-
-interface HeaderProps {}
-
-import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
+
+//styles
+import styles from "./Header.module.scss";
+
+// routes
 import { shopPath } from "../../utils/constants/routes";
 
-const Header: FC<HeaderProps> = () => {
+//components
+import { UIContainer } from "../../components/UI-Kit/UIContainer/UIContainer";
+import { UIInput } from "../../components/UI-Kit/UIInput/UIInput";
+import UIButton from "../../components/UI-Kit/UIButton/UIButton";
+
+const Header: FC = () => {
   return (
     <header className={styles.header}>
-      <div className={styles.container}>
+      <UIContainer>
         <div className={styles.content}>
           <div className={styles.logo}>
             <Link to={shopPath} className={styles.title}>
@@ -17,11 +23,22 @@ const Header: FC<HeaderProps> = () => {
             </Link>
           </div>
 
-          <div></div>
+          <div>
+            <UIInput
+              placeholder="Enter device name, type, brand..."
+              type="text"
+              apearence="search"
+            />
+          </div>
 
-          <div></div>
+          <div className={styles["btn-box"]}>
+            <UIButton styleClass={styles["login-btn"]} appearance="primary">
+              sign-in
+            </UIButton>
+            <UIButton appearance="ghost">sign-up</UIButton>
+          </div>
         </div>
-      </div>
+      </UIContainer>
     </header>
   );
 };

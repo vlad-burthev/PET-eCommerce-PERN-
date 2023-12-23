@@ -48,8 +48,8 @@ a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-a{
-    text-decoration: auto;
+a {
+  text-decoration: auto;
 }
 
 /* Упрощаем работу с изображениями */
@@ -69,6 +69,12 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+/**/
+button {
+  cursor: pointer;
+  border: none;
 }
 
 /* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */

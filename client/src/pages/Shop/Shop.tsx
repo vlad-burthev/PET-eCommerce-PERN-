@@ -1,9 +1,17 @@
 import type { FC } from "react";
 
-interface ShopProps {}
+//styles
+import styles from "./Shop.module.scss";
+import Sidebar from "../../components/Shop/Sidebar/Sidebar";
+import Content from "../../components/Shop/Content/Content";
 
-const Shop: FC<ShopProps> = () => {
-  return "Shop";
+const Shop: FC = () => {
+  return (
+    <div className={styles.shop}>
+      <Sidebar />
+      <Content />
+    </div>
+  );
 };
 
 export default Shop;
