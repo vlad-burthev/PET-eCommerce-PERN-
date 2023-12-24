@@ -6,11 +6,12 @@ import { rootReducer } from "./rootReducer";
 
 //api
 import { typeAPI } from "../services/typeAPI";
+import { userAPI } from "../services/userAPI";
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(typeAPI.middleware),
+    getDefaultMiddleware().concat(typeAPI.middleware, userAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

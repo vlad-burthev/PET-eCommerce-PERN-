@@ -1,0 +1,45 @@
+@keyframes loader {
+  0% {
+    background-color: var(--color-white);
+  }
+  50% {
+    background-color: black;
+  }
+  100% {
+    background-color: var(--color-white);
+  }
+}
+
+.loader {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 11px;
+  width: 40px;
+}
+
+.loader span {
+  display: block;
+  margin-inline: 3px;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  animation: loader 1.5s infinite;
+}
+
+.loader span:first-child {
+  animation-delay: 0s;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.loader span:last-child {
+  animation-delay: 1s;
+}
+
+.hidden {
+  display: none;
+}

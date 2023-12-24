@@ -5,8 +5,9 @@ export interface UIInputProps
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  type?: "text" | "number";
-  apearence?: "defult" | "search" | "password";
+  type?: "text" | "number" | "password";
+  apearence?: "default" | "search" | "password";
   styleName?: string;
   maxLength?: number;
+  error?: boolean;
 }

@@ -1,11 +1,11 @@
 import type { FC } from "react";
+import classNames from "classnames";
 
 //types
 import { UIButtonProps } from "./UIButton.props";
 
 //styles
 import styles from "./UIButton.module.scss";
-import classNames from "classnames";
 
 const UIButton: FC<UIButtonProps> = ({
   children,

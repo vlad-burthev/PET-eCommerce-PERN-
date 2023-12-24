@@ -1,0 +1,27 @@
+.link {
+  display: inline-block;
+  height: max-content;
+  padding: 3px 8px;
+  transition: var(--transition);
+  border-radius: 6px;
+  line-height: normal;
+}
+
+.primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-olive-dark);
+  }
+}
+
+.ghost {
+  font-weight: 600;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-olive-light);
+  }
+}

@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 
 //styles
 import styles from "./UIInput.module.scss";
@@ -9,6 +9,8 @@ import classNames from "classnames";
 
 //icons
 import SeachIcon from "./icons/search.svg?react";
+import EyeOpenIcon from "./icons/eye-open.svg?react";
+import EyeCloseIcon from "./icons/eye-closed.svg?react";
 
 export const UIInput: FC<UIInputProps> = ({
   type = "text",
@@ -16,6 +18,7 @@ export const UIInput: FC<UIInputProps> = ({
   maxLength,
   apearence = "default",
   placeholder,
+  error,
   ...props
 }) => {
   switch (apearence) {
@@ -25,7 +28,11 @@ export const UIInput: FC<UIInputProps> = ({
           <input
             placeholder={placeholder}
             type={type}
-            className={classNames(styles.input, styleName && styles[styleName])}
+            className={classNames(
+              styles.input,
+              styleName && styles[styleName],
+              error && styles.error
+            )}
             maxLength={maxLength}
             {...props}
           />
@@ -46,6 +53,44 @@ export const UIInput: FC<UIInputProps> = ({
           <SeachIcon
             className={classNames(styles.icon, styles[`icon-${apearence}`])}
           />
+        </div>
+      );
+
+    case "password":
+      const [showPass, setShowPass] = useState(false);
+      return (
+        <div className={classNames(styles["input-block"], styles[apearence])}>
+          <input
+            placeholder={placeholder}
+            type={showPass ? "text" : "password"}
+            className={classNames(
+              styles.input,
+              error && styles.error,
+              styleName && styles[styleName]
+            )}
+            maxLength={maxLength}
+            {...props}
+          />
+
+          {showPass ? (
+            <EyeOpenIcon
+              onClick={() => setShowPass(!showPass)}
+              className={classNames(
+                styles.icon,
+                styles.pass,
+                styles[`icon-${apearence}`]
+              )}
+            />
+          ) : (
+            <EyeCloseIcon
+              onClick={() => setShowPass(!showPass)}
+              className={classNames(
+                styles.icon,
+                styles.pass,
+                styles[`icon-${apearence}`]
+              )}
+            />
+          )}
         </div>
       );
   }

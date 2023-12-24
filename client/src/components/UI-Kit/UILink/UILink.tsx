@@ -9,16 +9,22 @@ import styles from "./UILink.module.scss";
 import { UILinkProps } from "./UILink.props";
 
 export const UILink: FC<UILinkProps> = ({
-  path,
+  to,
   children,
-  apearence,
+  appearance,
+  type = "link",
+  styleClass,
   ...props
 }) => {
   return (
     <Link
       {...props}
-      to={path}
-      className={classNames(styles.link, styles[apearence])}
+      to={to}
+      className={classNames(
+        styles.link,
+        styles[appearance],
+        styleClass && styleClass
+      )}
     >
       {children}
     </Link>

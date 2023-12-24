@@ -51,41 +51,31 @@ export const registration = async (req, res, next) => {
 
     if (name.trim().length < 3) {
       return next(
-        ApiError.badRequest({
-          name: "Name must be longer than 3 characters ",
-        })
+        ApiError.badRequest("Name must be longer than 3 characters ")
       );
     }
 
     if (email.trim().length < 10) {
       return next(
-        ApiError.badRequest({
-          email: "Email must be longer than 10 characters ",
-        })
+        ApiError.badRequest("Email must be longer than 10 characters ")
       );
     }
 
     if (password.trim().length < 6) {
       return next(
-        ApiError.badRequest({
-          password: "Password must be longer than 6 characters ",
-        })
+        ApiError.badRequest("Password must be longer than 6 characters ")
       );
     }
 
     if (phone.trim().length < 9) {
       return next(
-        ApiError.badRequest({
-          phone: "Phone must be longer than 6 characters ",
-        })
+        ApiError.badRequest("Phone must be longer than 6 characters ")
       );
     }
 
     if (name.trim().length < 3) {
       return next(
-        ApiError.badRequest({
-          name: "Name must be longer than 3 characters ",
-        })
+        ApiError.badRequest("Name must be longer than 3 characters ")
       );
     }
 

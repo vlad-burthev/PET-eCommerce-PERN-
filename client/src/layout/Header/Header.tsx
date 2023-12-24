@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 // routes
-import { shopPath } from "../../utils/constants/routes";
+import { shopPath, signInPath, signUpPath } from "../../utils/constants/routes";
 
 //components
 import { UIContainer } from "../../components/UI-Kit/UIContainer/UIContainer";
 import { UIInput } from "../../components/UI-Kit/UIInput/UIInput";
-import UIButton from "../../components/UI-Kit/UIButton/UIButton";
+import { UILink } from "../../components/UI-Kit/UILink/UILink";
 
 const Header: FC = () => {
   return (
@@ -23,19 +23,25 @@ const Header: FC = () => {
             </Link>
           </div>
 
-          <div>
+          <div className={styles.search}>
             <UIInput
-              placeholder="Enter device name, type, brand..."
+              placeholder="enter device name, type, brand..."
               type="text"
               apearence="search"
             />
           </div>
 
           <div className={styles["btn-box"]}>
-            <UIButton styleClass={styles["login-btn"]} appearance="primary">
+            <UILink
+              to={signInPath}
+              styleClass={styles["login-btn"]}
+              appearance="primary"
+            >
               sign-in
-            </UIButton>
-            <UIButton appearance="ghost">sign-up</UIButton>
+            </UILink>
+            <UILink to={signUpPath} appearance="ghost">
+              sign-up
+            </UILink>
           </div>
         </div>
       </UIContainer>

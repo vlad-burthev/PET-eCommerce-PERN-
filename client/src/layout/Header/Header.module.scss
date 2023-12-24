@@ -26,9 +26,13 @@
       }
     }
 
+    & .search {
+    }
+
     & .btn-box {
       display: flex;
       justify-content: end;
+      align-items: center;
 
       & .login-btn {
         margin-right: 20px;

@@ -1,3 +1,8 @@
+.input-block {
+  position: relative;
+  width: 100%;
+}
+
 .input {
   border-radius: 12px;
   padding: 5px 35px 5px 15px;
@@ -15,10 +20,10 @@
     font-weight: 600;
     color: var(--color-olive-dark);
   }
-}
 
-.input-block {
-  position: relative;
+  &.error {
+    border-color: red;
+  }
 }
 
 .icon {
@@ -35,7 +40,25 @@
   }
 }
 
+.pass {
+  cursor: pointer;
+
+  & path {
+    stroke: var(--color-primary);
+  }
+}
+
 .input:hover + .icon-search path,
 .input:focus + .icon-search path {
   stroke: var(--color-primary);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
