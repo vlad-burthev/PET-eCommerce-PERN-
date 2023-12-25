@@ -93,5 +93,23 @@ export const UIInput: FC<UIInputProps> = ({
           )}
         </div>
       );
+
+    case "warning":
+      return (
+        <div>
+          <input
+            placeholder={placeholder}
+            type={type}
+            className={classNames(
+              styles.input,
+              styles.warning,
+              styleName && styles[styleName],
+              error && styles.error
+            )}
+            maxLength={maxLength}
+            {...props}
+          />
+        </div>
+      );
   }
 };

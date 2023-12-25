@@ -25,7 +25,7 @@ export const login = async (req, res, next) => {
     const comparePassword = bcrypt.compareSync(password, existedUser.password);
 
     if (!comparePassword) {
-      return next(ApiError.unauthorization("Wrong password!"));
+      return next(ApiError.unauthorized("Wrong password!"));
     }
 
     const token = createJWT({
@@ -118,14 +118,14 @@ export const registration = async (req, res, next) => {
 };
 
 export const check = async (req, res, next) => {
-  const token = createJWT(
-    req.user.id,
-    req.user.email,
-    req.user.phone,
-    req.user.name,
-    req.user.role,
-    req.user.image
-  );
+  const token = createJWT({
+    id: req.user.id,
+    email: req.user.email,
+    phone: req.user.phone,
+    name: req.user.name,
+    role: req.user.role,
+    image: req.user.image,
+  });
   return res.json({
     token,
     user: {

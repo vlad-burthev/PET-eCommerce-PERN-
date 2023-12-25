@@ -1,15 +1,17 @@
 import { useState, type FC, useEffect } from "react";
+import classNames from "classnames";
 
 //styles
 import styles from "./SignIn.module.scss";
 
 //components
 import { UIInput } from "../../components/UI-Kit/UIInput/UIInput";
-import UIButton from "../../components/UI-Kit/UIButton/UIButton";
-import { Link } from "react-router-dom";
+import { UIButton } from "../../components/UI-Kit/UIButton/UIButton";
+import { Link, useNavigate } from "react-router-dom";
+import UILoader from "../../components/UI-Kit/UILoader/UILoader";
 
 //paths
-import { signUpPath } from "../../utils/constants/routes";
+import { shopPath, signUpPath } from "../../utils/constants/routes";
 import { useLoginMutation } from "../../services/userAPI";
 import { useAppDispatch } from "../../store/store";
 import {
@@ -17,8 +19,6 @@ import {
   setIsLogin,
   setUser,
 } from "../../store/userSlice/userSlice";
-import UILoader from "../../components/UI-Kit/UILoader/UILoader";
-import classNames from "classnames";
 
 const SignIn: FC = () => {
   const [userData, setUserData] = useState({
@@ -30,6 +30,8 @@ const SignIn: FC = () => {
   const [login, { data, isSuccess, isLoading, isError, error }]: any =
     useLoginMutation();
 
+  const navigate = useNavigate();
+
   const onSubmitHandler = async () => {
     await login(userData);
   };
@@ -38,6 +40,10 @@ const SignIn: FC = () => {
     data?.user && dispatch(setUser(data.user));
     isSuccess && dispatch(setIsLogin(true));
     data?.user.role === "ADMIN" && dispatch(setIsAdmin(true));
+    data?.token && localStorage.setItem("token", data?.token);
+    if (isSuccess) {
+      navigate(shopPath);
+    }
   }, [isSuccess]);
 
   return (

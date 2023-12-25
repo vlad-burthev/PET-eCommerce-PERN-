@@ -2,6 +2,7 @@ import { Router } from "express";
 import { checkRoleMiddleware } from "../middleware/checkRoleMiddleware.js";
 import {
   createType,
+  deletedType,
   getAllTypes,
   getOneType,
 } from "../controllers/typeController.js";
@@ -14,4 +15,8 @@ typeRouter.get("/get_one_type/:id", getOneType);
 
 //admin routes
 typeRouter.post("/create_type", checkRoleMiddleware("ADMIN"), createType);
-typeRouter.delete("/delete_type/:id", checkRoleMiddleware("ADMIN"));
+typeRouter.delete(
+  "/delete_type/:id",
+  checkRoleMiddleware("ADMIN"),
+  deletedType
+);

@@ -7,7 +7,7 @@ import { UIButtonProps } from "./UIButton.props";
 //styles
 import styles from "./UIButton.module.scss";
 
-const UIButton: FC<UIButtonProps> = ({
+export const UIButton: FC<UIButtonProps> = ({
   children,
   appearance,
   styleClass,
@@ -26,5 +26,3 @@ const UIButton: FC<UIButtonProps> = ({
     </button>
   );
 };
-
-export default UIButton;

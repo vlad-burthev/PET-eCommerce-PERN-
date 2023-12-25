@@ -24,6 +24,10 @@
   &.error {
     border-color: red;
   }
+
+  &.warning {
+    border-color: orange;
+  }
 }
 
 .icon {

@@ -1,0 +1,42 @@
+.sidebar {
+  position: sticky;
+  height: max-content;
+  top: 80px;
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  overflow: hidden;
+
+  & a {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    color: var(--color-primary);
+    transition: var(--transition);
+    font-size: 20px;
+
+    &:hover {
+      background-color: var(--color-olive-light);
+    }
+
+    &.link__active {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+
+      & path {
+        fill: var(--color-white);
+        stroke: var(--color-white);
+      }
+    }
+
+    & svg {
+      margin-right: 10px;
+      height: 30px;
+      width: 30px;
+
+      & path {
+        fill: var(--color-primary);
+        stroke: var(--color-primary);
+      }
+    }
+  }
+}

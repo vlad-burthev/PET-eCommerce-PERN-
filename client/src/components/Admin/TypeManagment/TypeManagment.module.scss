@@ -1,0 +1,59 @@
+.type-menegment {
+  & .header {
+    position: sticky;
+    top: 80px;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-primary);
+
+    &-form {
+      position: relative;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      & button {
+        margin-left: 20px;
+
+        &.succes {
+          background-color: green;
+          border-color: rgb(4, 101, 4);
+          color: #fff;
+        }
+
+        &.errorSucces {
+          background-color: red;
+          border-color: rgb(137, 6, 6);
+          color: #fff;
+        }
+      }
+
+      & p {
+        position: absolute;
+        color: red;
+        right: 0;
+      }
+    }
+  }
+
+  & .list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+
+    & .item {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 45%;
+      border: 1px solid var(--color-primary);
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-transform: lowercase;
+    }
+  }
+}

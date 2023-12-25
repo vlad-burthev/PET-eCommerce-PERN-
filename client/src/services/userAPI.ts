@@ -20,7 +20,17 @@ export const userAPI = createApi({
         body: user,
       }),
     }),
+    check: build.query({
+      query: (token: string) => ({
+        url: "/check",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegistrationMutation } = userAPI;
+export const { useLoginMutation, useRegistrationMutation, useCheckQuery } =
+  userAPI;

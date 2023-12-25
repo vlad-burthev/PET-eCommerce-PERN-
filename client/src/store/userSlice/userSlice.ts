@@ -48,8 +48,19 @@ const userSlice = createSlice({
     setIsAdmin: (state, { payload }) => {
       state.isAdmin = payload;
     },
+    logOut: (state) => {
+      localStorage.removeItem("token");
+      state.user = {
+        id: null,
+        email: null,
+        image: null,
+        name: null,
+        phone: null,
+        role: null,
+      };
+    },
   },
 });
 
-export const { setUser, setIsLogin, setIsAdmin } = userSlice.actions;
+export const { setUser, setIsLogin, setIsAdmin, logOut } = userSlice.actions;
 export default userSlice.reducer;

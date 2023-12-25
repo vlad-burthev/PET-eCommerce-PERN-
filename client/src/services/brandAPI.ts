@@ -1,42 +1,42 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const typeAPI = createApi({
-  reducerPath: "typeAPI",
+export const brandAPI = createApi({
+  reducerPath: "brandAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL + "api/type/",
+    baseUrl: import.meta.env.VITE_BASE_URL + "api/brand/",
   }),
-  tagTypes: ["Types"],
+  tagTypes: ["Brands"],
   endpoints: (build) => ({
-    fetchAllTypes: build.query({
-      query: () => "get_all_types",
-      providesTags: ["Types"],
+    fetchAllBrands: build.query({
+      query: () => "get_all_brands",
+      providesTags: ["Brands"],
     }),
-    createType: build.mutation({
+    createBrand: build.mutation({
       query: (name: string) => ({
-        url: "create_type",
+        url: "create_brand",
         method: "POST",
         body: { name: name },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      invalidatesTags: ["Types"],
+      invalidatesTags: ["Brands"],
     }),
-    deleteType: build.mutation({
+    deleteBrand: build.mutation({
       query: (id: number) => ({
-        url: `delete_type/${id}`,
+        url: `delete_brand/${id}`,
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      invalidatesTags: ["Types"],
+      invalidatesTags: ["Brands"],
     }),
   }),
 });
 
 export const {
-  useFetchAllTypesQuery,
-  useCreateTypeMutation,
-  useDeleteTypeMutation,
-} = typeAPI;
+  useFetchAllBrandsQuery,
+  useCreateBrandMutation,
+  useDeleteBrandMutation,
+} = brandAPI;

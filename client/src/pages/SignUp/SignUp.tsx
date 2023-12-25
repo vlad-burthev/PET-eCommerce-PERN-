@@ -1,27 +1,31 @@
 import { useState, type FC, useEffect } from "react";
-
-interface SignUpProps {}
+import classNames from "classnames";
+import { useAppDispatch } from "../../store/store";
 
 //styles
 import styles from "./SignUp.module.scss";
-import { UIInput } from "../../components/UI-Kit/UIInput/UIInput";
-import classNames from "classnames";
-import UIButton from "../../components/UI-Kit/UIButton/UIButton";
-import { Link } from "react-router-dom";
-import { signInPath } from "../../utils/constants/routes";
-import { useRegistrationMutation } from "../../services/userAPI";
-import UILoader from "../../components/UI-Kit/UILoader/UILoader";
-// import { InputMask } from "@react-input/mask";
-import InputMask from "react-input-mask";
 
-import { useAppDispatch, useAppSelector } from "../../store/store";
+//components
+import { UIInput } from "../../components/UI-Kit/UIInput/UIInput";
+import UILoader from "../../components/UI-Kit/UILoader/UILoader";
+import { Link, useNavigate } from "react-router-dom";
+import InputMask from "react-input-mask";
+import { UIButton } from "../../components/UI-Kit/UIButton/UIButton";
+
+//api
+import { useRegistrationMutation } from "../../services/userAPI";
+
+//routes
+import { shopPath, signInPath } from "../../utils/constants/routes";
+
+//redux
 import {
   setIsAdmin,
   setIsLogin,
   setUser,
 } from "../../store/userSlice/userSlice";
 
-const SignUp: FC<SignUpProps> = () => {
+const SignUp: FC = () => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -30,9 +34,6 @@ const SignUp: FC<SignUpProps> = () => {
   });
 
   const dispatch = useAppDispatch();
-  const userInforamtion = useAppSelector((state) => state.user);
-
-  console.log(userData);
 
   const [registration, { data, isSuccess, isLoading, isError, error }]: any =
     useRegistrationMutation();
@@ -41,10 +42,16 @@ const SignUp: FC<SignUpProps> = () => {
     await registration(userData);
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     data?.user && dispatch(setUser(data?.user));
     isSuccess && dispatch(setIsLogin(true));
     data?.user.role === "ADMIN" && dispatch(setIsAdmin(true));
+    data?.token && localStorage.setItem("token", data?.token);
+    if (isSuccess) {
+      navigate(shopPath);
+    }
   }, [isSuccess]);
 
   return (

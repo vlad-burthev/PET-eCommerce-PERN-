@@ -23,4 +23,31 @@
       color: var(--color-white);
     }
   }
+
+  &.danger {
+    border: 1px solid rgb(168, 68, 68);
+    background-color: transparent;
+    color: rgb(168, 68, 68);
+    padding: 5px 15px;
+    font-weight: 500;
+    font-size: 16px;
+
+    &:hover {
+      background-color: rgb(233, 121, 121);
+      color: antiquewhite;
+    }
+  }
+
+  &.warning {
+    border: 1px solid orange;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: bold;
+    color: orange;
+
+    &:hover {
+      background-color: orange;
+      color: var(--color-white);
+    }
+  }
 }
