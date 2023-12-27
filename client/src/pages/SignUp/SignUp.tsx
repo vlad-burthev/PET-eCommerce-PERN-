@@ -1,4 +1,4 @@
-import { useState, type FC, useEffect } from "react";
+import { useState, type FC, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { useAppDispatch } from "../../store/store";
 
@@ -89,20 +89,17 @@ const SignUp: FC = () => {
             setUserData({ ...userData, phone: e.target.value })
           }
         >
-          {(inputProps: any) => (
-            <UIInput
-              id="phone"
-              type="text"
-              placeholder="+38 (999) 999-99-99"
-              className={classNames(
-                styles["phone-input"],
-                isError ? styles.error : ""
-              )}
-              apearence="default"
-              error={isError}
-              {...inputProps}
-            />
-          )}
+          <UIInput
+            id="phone"
+            type="text"
+            placeholder="+38 (999) 999-99-99"
+            className={classNames(
+              styles["phone-input"],
+              isError ? styles.error : ""
+            )}
+            apearence="default"
+            error={isError}
+          />
         </InputMask>
       </div>
       <div className={styles["input-block"]}>

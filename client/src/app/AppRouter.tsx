@@ -10,9 +10,10 @@ import {
   signInPath,
   signUpPath,
 } from "../utils/constants/routes";
-import Loading from "../pages/Loading/Loading";
 import TypeManagment from "../components/Admin/TypeManagment/TypeManagment";
 import BrandManagment from "../components/Admin/BrandManagment/BrandManagment";
+import UserManagment from "../components/Admin/UserManagment/UserManagment";
+import { useAppSelector } from "../store/store";
 
 const DevicesManagment = lazy(
   () => import("../components/Admin/DevicesManagment/DevicesManagment")
@@ -26,19 +27,25 @@ const Shop = lazy(() => import("../pages/Shop/Shop"));
 const Admin = lazy(() => import("../pages/Admin/Admin"));
 
 const AppRouter: FC = () => {
+  const { isLogin, isAdmin } = useAppSelector((state) => state.user);
+
   return (
     <Suspense fallback={false}>
       <Routes>
         <Route path={shopPath} element={<Layout />}>
           <Route index element={<Shop />} />
-          <Route path={adminPath} element={<Admin />}>
-            <Route path="devices" element={<DevicesManagment />} />
-            <Route path="types" element={<TypeManagment />} />
-            <Route path="brands" element={<BrandManagment />} />
-            <Route path="users" element={<h1>users</h1>} />
-          </Route>
+          {isAdmin && (
+            <Route path={adminPath} element={<Admin />}>
+              <Route path="devices" element={<DevicesManagment />} />
+              <Route path="types" element={<TypeManagment />} />
+              <Route path="brands" element={<BrandManagment />} />
+              <Route path="users" element={<UserManagment />} />
+            </Route>
+          )}
+
+          {isLogin && <Route path={cartPath} element={<Cart />} />}
+
           <Route path={devicePath} element={<DevicePage />} />
-          <Route path={cartPath} element={<Cart />} />
           <Route path={signInPath} element={<SignIn />} />
           <Route path={signUpPath} element={<SignUp />} />
           <Route path={notFoundPath} element={<NotFound />} />

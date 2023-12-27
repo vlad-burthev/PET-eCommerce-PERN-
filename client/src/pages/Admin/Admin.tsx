@@ -1,5 +1,5 @@
 import { Suspense, type FC } from "react";
-import SideBar from "../../components/Admin/Sidebar";
+import SideBar from "../../components/Admin/Sidebar/Sidebar";
 
 //styles
 import styles from "./Admin.module.scss";
@@ -9,11 +9,9 @@ const Admin: FC = () => {
   return (
     <div className={styles.admin}>
       <SideBar />
-      <div>
-        <Suspense fallback={<h1>loading</h1>}>
-          <Outlet />
-        </Suspense>
-      </div>
+      <Suspense fallback={<h1>loading</h1>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

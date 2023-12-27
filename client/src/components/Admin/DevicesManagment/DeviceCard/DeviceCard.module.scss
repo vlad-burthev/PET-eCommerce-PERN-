@@ -1,0 +1,48 @@
+.card {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+
+  & .content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 200px;
+
+    & .image {
+      display: flex;
+      justify-content: center;
+
+      & img {
+        height: 200px;
+      }
+    }
+
+    & .list {
+      margin: 0;
+
+      & li {
+        padding: 0;
+
+        & span {
+          font-weight: bold;
+          margin-left: 5px;
+          text-transform: lowercase;
+        }
+      }
+    }
+  }
+
+  & .block-btn {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+
+    & button {
+      &:first-child {
+        margin-right: 20px;
+      }
+    }
+  }
+}

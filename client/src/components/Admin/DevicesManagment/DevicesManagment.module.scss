@@ -1,0 +1,17 @@
+.device-menegment {
+  & .list {
+    width: 100%;
+
+    & .item {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 45%;
+      border: 1px solid var(--color-primary);
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-transform: lowercase;
+    }
+  }
+}

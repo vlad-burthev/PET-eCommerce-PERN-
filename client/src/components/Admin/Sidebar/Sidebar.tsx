@@ -7,10 +7,10 @@ import styles from "./Sidebar.module.scss";
 import { NavLink } from "react-router-dom";
 
 //icons
-import TypeIcon from "./icons/category.svg?react";
-import DeviceIcon from "./icons/deviceIcons.svg?react";
-import UserIcon from "./icons/users.svg?react";
-import BrandIcon from "./icons/brands.svg?react";
+import TypeIcon from "../icons/category.svg?react";
+import DeviceIcon from "../icons/deviceIcons.svg?react";
+import UserIcon from "../icons/users.svg?react";
+import BrandIcon from "../icons/brands.svg?react";
 
 const SideBar: FC = () => {
   return (

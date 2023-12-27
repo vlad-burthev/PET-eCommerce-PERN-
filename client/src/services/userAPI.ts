@@ -29,8 +29,20 @@ export const userAPI = createApi({
         },
       }),
     }),
+    fetchAllUsers: build.query({
+      query: () => ({
+        url: "/get_all_users",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegistrationMutation, useCheckQuery } =
-  userAPI;
+export const {
+  useLoginMutation,
+  useRegistrationMutation,
+  useCheckQuery,
+  useFetchAllUsersQuery,
+} = userAPI;

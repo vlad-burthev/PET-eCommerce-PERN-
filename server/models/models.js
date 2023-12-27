@@ -137,10 +137,10 @@ DeviceInfo.belongsTo(Device);
 Device.hasMany(CartDevice, { onDelete: "CASCADE" });
 CartDevice.belongsTo(Device);
 
-Type.hasMany(Device);
+Type.hasMany(Device, { onDelete: "RESTRICT" });
 Device.belongsTo(Type);
 
-Brand.hasMany(Device);
+Brand.hasMany(Device, { onDelete: "RESTRICT" });
 Device.belongsTo(Brand);
 
 UserCart.hasMany(CartDevice, { onDelete: "CASCADE", as: "devices" });

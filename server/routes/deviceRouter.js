@@ -32,7 +32,7 @@ deviceRouter.put(
   checkRoleMiddleware("ADMIN"),
   changeDevice
 );
-deviceRouter.delete(
+deviceRouter.post(
   "/delete_device/:slug",
   checkRoleMiddleware("ADMIN"),
   deleteDevice

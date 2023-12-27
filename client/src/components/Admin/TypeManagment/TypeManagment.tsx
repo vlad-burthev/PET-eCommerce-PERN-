@@ -1,4 +1,4 @@
-import { useState, type FC, useEffect } from "react";
+import { useState, type FC } from "react";
 
 //styles
 import styles from "./TypeManagment.module.scss";
@@ -10,6 +10,7 @@ import {
 import { I_Type } from "../../../interfaces/interfaces";
 import { UIButton } from "../../UI-Kit/UIButton/UIButton";
 import { UIInput } from "../../UI-Kit/UIInput/UIInput";
+import { useFilteredArray } from "../../../hooks/useFilteredArray";
 
 const TypeManagment: FC = () => {
   const [typeName, setTypeName] = useState("");
@@ -22,16 +23,7 @@ const TypeManagment: FC = () => {
 
   const [filter, setFilter] = useState<string>("");
 
-  const [filteredData, setFilteredData] = useState([]);
-
-  useEffect(() => {
-    if (data) {
-      const filteredData = data.filter((type: I_Type) =>
-        type.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
-      );
-      setFilteredData(filteredData);
-    }
-  }, [isSuccess, data, filter]);
+  const filteredData = useFilteredArray<I_Type>({ data, isSuccess, filter });
 
   const [createTypeSucces, setCreateTypeSucces] = useState<null | boolean>(
     null
@@ -83,15 +75,13 @@ const TypeManagment: FC = () => {
               (typeNameError !== null && typeNameError)}
           </p>
         </div>
-        <div>
-          <UIInput
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            type="text"
-            apearence="search"
-            placeholder="enter type name to search"
-          />
-        </div>
+        <UIInput
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          type="text"
+          apearence="search"
+          placeholder="enter type name to search"
+        />
       </div>
       {filteredData && (
         <ul className={styles.list}>

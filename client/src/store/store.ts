@@ -8,6 +8,7 @@ import { rootReducer } from "./rootReducer";
 import { typeAPI } from "../services/typeAPI";
 import { userAPI } from "../services/userAPI";
 import { brandAPI } from "../services/brandAPI";
+import { deviceAPI } from "../services/deviceAPI";
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -15,7 +16,8 @@ export const store = configureStore({
     getDefaultMiddleware().concat(
       typeAPI.middleware,
       userAPI.middleware,
-      brandAPI.middleware
+      brandAPI.middleware,
+      deviceAPI.middleware
     ),
 });
 
