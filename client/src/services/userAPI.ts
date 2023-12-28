@@ -5,6 +5,7 @@ export const userAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL + "api/user",
   }),
+  tagTypes: ["users"],
   endpoints: (build) => ({
     login: build.mutation({
       query: (user) => ({
@@ -36,6 +37,17 @@ export const userAPI = createApi({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
+      providesTags: ["users"],
+    }),
+    deleteUser: build.mutation({
+      query: (id: number) => ({
+        url: `delete_user/${id}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+      invalidatesTags: ["users"],
     }),
   }),
 });
@@ -45,4 +57,5 @@ export const {
   useRegistrationMutation,
   useCheckQuery,
   useFetchAllUsersQuery,
+  useDeleteUserMutation,
 } = userAPI;

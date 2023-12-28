@@ -45,7 +45,7 @@ const AppRouter: FC = () => {
 
           {isLogin && <Route path={cartPath} element={<Cart />} />}
 
-          <Route path={devicePath} element={<DevicePage />} />
+          <Route path={devicePath + ":slug"} element={<DevicePage />} />
           <Route path={signInPath} element={<SignIn />} />
           <Route path={signUpPath} element={<SignUp />} />
           <Route path={notFoundPath} element={<NotFound />} />

@@ -1,0 +1,55 @@
+.card {
+  border: 1px solid var(--color-primary);
+  padding: 10px;
+  border-radius: 15px;
+  transition: var(--transition);
+  color: var(--color-primary);
+
+  &:hover {
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.428);
+  }
+
+  & .image {
+    margin-bottom: 10px;
+
+    & img {
+      aspect-ratio: 4/3;
+      object-fit: contain;
+    }
+  }
+
+  & .info {
+    & .sale-block {
+      position: relative;
+
+      & .nosale {
+        font-size: 14px;
+      }
+      & .price__sale {
+        margin-left: 10px;
+        font-size: 22px;
+        color: red;
+      }
+      & .sale {
+        position: absolute;
+        right: 15px;
+        top: 0;
+        font-size: 14px;
+        background-color: red;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  & .btn {
+    margin-top: 20px;
+    width: 100%;
+    font-size: 24px;
+  }
+}

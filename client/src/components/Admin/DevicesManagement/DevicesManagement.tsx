@@ -10,6 +10,7 @@ import { useFilteredArray } from "../../../hooks/useFilteredArray";
 import DeviceMHeader from "./DeviceHeader/DeviceMHeader";
 import DeviceCard from "./DeviceCard/DeviceCard";
 import DeviceChange from "./DeviceChange/DeviceChange";
+import ReactPaginate from "react-paginate";
 
 const DevicesManagement = () => {
   const { data, isSuccess }: any = useFetchAllDevicesQuery("");
@@ -31,6 +32,12 @@ const DevicesManagement = () => {
     setSelectedDevice(device);
   };
 
+  const [page, setPage] = useState(1);
+
+  const handlePageClick = (event: any) => {
+    setPage(event.selected);
+    console.log(page);
+  };
   return (
     <>
       {showForm && (
@@ -52,6 +59,16 @@ const DevicesManagement = () => {
               />
             ))}
         </div>
+        <ReactPaginate
+          className={styles.paginate}
+          breakLabel="..."
+          nextLabel=">"
+          pageRangeDisplayed={5}
+          pageCount={Math.ceil(filteredDevice.length / 12)}
+          previousLabel="<"
+          renderOnZeroPageCount={null}
+          onPageChange={handlePageClick}
+        />
       </div>
     </>
   );

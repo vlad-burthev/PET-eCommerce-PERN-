@@ -1,0 +1,30 @@
+.header {
+  position: sticky;
+  top: 60px;
+  padding: 20px 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 400px);
+  gap: 20px;
+  grid-template-rows: auto;
+  justify-content: center;
+
+  & .card {
+    border: 1px solid var(--color-primary);
+    padding: 10px;
+    border-radius: 10px;
+    & span {
+      font-weight: bold;
+    }
+
+    & button {
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
+}

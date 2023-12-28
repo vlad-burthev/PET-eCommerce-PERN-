@@ -4,6 +4,7 @@ import { userAPI } from "../services/userAPI";
 import userSlice from "./userSlice/userSlice";
 import { brandAPI } from "../services/brandAPI";
 import { deviceAPI } from "../services/deviceAPI";
+import deviceSlice from "./deviceSlice/deviceSlice";
 
 export const rootReducer = combineReducers({
   [typeAPI.reducerPath]: typeAPI.reducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   [userAPI.reducerPath]: userAPI.reducer,
   [deviceAPI.reducerPath]: deviceAPI.reducer,
   user: userSlice,
+  device: deviceSlice,
 });

@@ -8,8 +8,10 @@ export const deviceAPI = createApi({
   tagTypes: ["Devices"],
   endpoints: (build) => ({
     fetchAllDevices: build.query({
-      query: ({ limit = 12, page = 1, brandId = "", typeId = "" }) => ({
-        url: `get_all_devices?limit=${limit}&page=${page}&brandId=${brandId}&typeId=${typeId}`,
+      query: ({ limit = 12, page = 1, brandId = null, typeId = null }) => ({
+        url: `get_all_devices?limit=${limit}&page=${page}&brandId=${
+          brandId !== null ? brandId : ""
+        }&typeId=${typeId !== null ? typeId : ""}`,
         method: "GET",
       }),
       providesTags: ["Devices"],
@@ -46,6 +48,12 @@ export const deviceAPI = createApi({
       }),
       invalidatesTags: ["Devices"],
     }),
+    fetchOneDevice: build.query({
+      query: (slug: string) => ({
+        url: `get_one_device/${slug}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -54,4 +62,5 @@ export const {
   useCreateDeviceMutation,
   useDeleteDeviceMutation,
   useChangeDeviceMutation,
+  useFetchOneDeviceQuery,
 } = deviceAPI;
