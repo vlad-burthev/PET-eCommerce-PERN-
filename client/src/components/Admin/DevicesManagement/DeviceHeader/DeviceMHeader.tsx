@@ -8,6 +8,7 @@ import { UIInput } from "../../../UI-Kit/UIInput/UIInput";
 import { useFetchAllTypesQuery } from "../../../../services/typeAPI";
 import { I_Type } from "../../../../interfaces/interfaces";
 import { useFetchAllBrandsQuery } from "../../../../services/brandAPI";
+import { I_Full_Device } from "../DeviceCard/DeviceCard.props";
 
 interface I_Info {
   title: string;
@@ -134,12 +135,11 @@ const DeviceMHeader: FC<I_DeviceMHeader> = ({ setFilter }) => {
             placeholder="sale"
           />
 
-          <UIInput
-            error={isError || !validForm ? true : false}
+          <textarea
+            // error={isError || !validForm ? true : false}
+            className={classNames(!validForm && styles.error, styles.textare)}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            type="text"
-            apearence="warning"
             placeholder="description"
           />
 

@@ -8,7 +8,7 @@ import { DeviceCardProps } from "./DeviceCard.props";
 import { UIButton } from "../../../UI-Kit/UIButton/UIButton";
 import { useDeleteDeviceMutation } from "../../../../services/deviceAPI";
 
-const DeviceCard: FC<DeviceCardProps> = ({ device }) => {
+const DeviceCard: FC<DeviceCardProps> = ({ device, showFormHandler }) => {
   const [deleteDevice] = useDeleteDeviceMutation();
 
   const deleteDeviceHandler = async (slug: string) => {
@@ -52,7 +52,12 @@ const DeviceCard: FC<DeviceCardProps> = ({ device }) => {
         >
           delete
         </UIButton>
-        <UIButton appearance="warning">update</UIButton>
+        <UIButton
+          onClick={() => showFormHandler(true, device)}
+          appearance="warning"
+        >
+          update
+        </UIButton>
       </div>
     </div>
   );

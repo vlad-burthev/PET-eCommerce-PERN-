@@ -8,12 +8,15 @@ export const deviceAPI = createApi({
   tagTypes: ["Devices"],
   endpoints: (build) => ({
     fetchAllDevices: build.query({
-      query: () => "/get_all_devices",
+      query: ({ limit = 12, page = 1, brandId = "", typeId = "" }) => ({
+        url: `get_all_devices?limit=${limit}&page=${page}&brandId=${brandId}&typeId=${typeId}`,
+        method: "GET",
+      }),
       providesTags: ["Devices"],
     }),
     createDevice: build.mutation({
       query: (device) => ({
-        url: "/create_device",
+        url: "create_device",
         method: "POST",
         body: device,
         headers: {
@@ -32,6 +35,17 @@ export const deviceAPI = createApi({
       }),
       invalidatesTags: ["Devices"],
     }),
+    changeDevice: build.mutation({
+      query: ({ slug, name, price, description, sale }) => ({
+        url: `change_device/${slug}`,
+        method: "PUT",
+        body: { name, price, description, sale },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+      invalidatesTags: ["Devices"],
+    }),
   }),
 });
 
@@ -39,4 +53,5 @@ export const {
   useFetchAllDevicesQuery,
   useCreateDeviceMutation,
   useDeleteDeviceMutation,
+  useChangeDeviceMutation,
 } = deviceAPI;

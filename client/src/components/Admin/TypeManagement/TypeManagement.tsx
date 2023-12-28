@@ -1,7 +1,7 @@
 import { useState, type FC } from "react";
 
 //styles
-import styles from "./TypeManagment.module.scss";
+import styles from "./TypeManagement.module.scss";
 import {
   useCreateTypeMutation,
   useFetchAllTypesQuery,
@@ -12,7 +12,7 @@ import { UIButton } from "../../UI-Kit/UIButton/UIButton";
 import { UIInput } from "../../UI-Kit/UIInput/UIInput";
 import { useFilteredArray } from "../../../hooks/useFilteredArray";
 
-const TypeManagment: FC = () => {
+const TypeManagement: FC = () => {
   const [typeName, setTypeName] = useState("");
   const { data, isSuccess, isError, isLoading, error } =
     useFetchAllTypesQuery("");
@@ -104,4 +104,4 @@ const TypeManagment: FC = () => {
   );
 };
 
-export default TypeManagment;
+export default TypeManagement;

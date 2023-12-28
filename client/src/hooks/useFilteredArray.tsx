@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { I_Type } from "../interfaces/interfaces";
-import { I_Full_Device } from "../components/Admin/DevicesManagment/DeviceCard/DeviceCard.props";
+import { I_Full_Device } from "../components/Admin/DevicesManagement/DeviceCard/DeviceCard.props";
 
 interface useFilteredArrayProps<T> {
   data: T[];

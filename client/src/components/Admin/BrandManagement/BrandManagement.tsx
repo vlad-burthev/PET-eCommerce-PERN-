@@ -1,7 +1,7 @@
 import { useState, type FC, useMemo } from "react";
 
 //styles
-import styles from "./BrandManagment.module.scss";
+import styles from "./BrandManagement.module.scss";
 import {
   useCreateBrandMutation,
   useFetchAllBrandsQuery,
@@ -12,7 +12,7 @@ import { UIButton } from "../../UI-Kit/UIButton/UIButton";
 import { UIInput } from "../../UI-Kit/UIInput/UIInput";
 import { useFilteredArray } from "../../../hooks/useFilteredArray";
 
-const BrandManagment: FC = () => {
+const BrandManagement: FC = () => {
   const [brandName, setBrandName] = useState("");
   const { data, isSuccess } = useFetchAllBrandsQuery("");
 
@@ -90,4 +90,4 @@ const BrandManagment: FC = () => {
   );
 };
 
-export default BrandManagment;
+export default BrandManagement;
