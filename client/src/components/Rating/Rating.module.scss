@@ -1,0 +1,14 @@
+.star {
+  cursor: pointer;
+
+  & svg {
+    height: 30px;
+    width: 30px;
+  }
+
+  &.active {
+    & svg {
+      fill: #1c274c;
+    }
+  }
+}

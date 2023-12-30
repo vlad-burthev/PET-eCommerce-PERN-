@@ -1,6 +1,6 @@
 .change {
-  position: absolute;
-  z-index: 10;
+  position: fixed;
+  z-index: 100;
   background-color: rgba(35, 35, 35, 0.313);
   inset: 0;
   backdrop-filter: blur(2px);

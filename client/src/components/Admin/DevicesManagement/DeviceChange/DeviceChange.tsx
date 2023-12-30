@@ -41,7 +41,6 @@ const DeviceChange: FC<DeviceChangeProps> = ({ setShowForm, device }) => {
         description:
           newInfo.description !== "" ? newInfo.description : device.description,
       });
-      console.log(newInfo);
     }
   };
 

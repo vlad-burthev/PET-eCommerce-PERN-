@@ -36,8 +36,10 @@ const DevicesManagement = () => {
 
   const handlePageClick = (event: any) => {
     setPage(event.selected);
-    console.log(page);
   };
+
+  console.log(showForm);
+
   return (
     <>
       {showForm && (

@@ -31,13 +31,14 @@
         color: red;
       }
       & .sale {
+        display: block;
         position: absolute;
         right: 15px;
         top: 0;
         font-size: 14px;
         background-color: red;
         border-radius: 50%;
-        width: 30px;
+        width: 65px;
         height: 30px;
         color: #fff;
         display: flex;

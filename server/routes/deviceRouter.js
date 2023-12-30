@@ -27,7 +27,7 @@ deviceRouter.post("/add_rating/:slug", checkAuthMiddleware, addRating);
 
 //admin routes
 deviceRouter.post("/create_device", checkRoleMiddleware("ADMIN"), createDevice);
-deviceRouter.put(
+deviceRouter.post(
   "/change_device/:slug",
   checkRoleMiddleware("ADMIN"),
   changeDevice

@@ -50,14 +50,9 @@ const userSlice = createSlice({
     },
     logOut: (state) => {
       localStorage.removeItem("token");
-      state.user = {
-        id: null,
-        email: null,
-        image: null,
-        name: null,
-        phone: null,
-        role: null,
-      };
+      state.user = initialState.user;
+      state.isLogin = initialState.isLogin;
+      state.isAdmin = initialState.isAdmin;
     },
   },
 });

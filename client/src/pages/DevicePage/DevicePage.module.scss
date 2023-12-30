@@ -1,0 +1,95 @@
+.page {
+  & .content {
+    & .info {
+      display: grid;
+      grid-template-columns: 400px 1fr 1fr;
+      grid-template-rows: 400px;
+      gap: 20px;
+
+      & .params {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--color-primary);
+        height: max-content;
+        &-item {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          font-weight: bold;
+          margin: 10px 0;
+
+          & .title {
+            color: var(--color-olive);
+          }
+        }
+      }
+
+      & .image {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid var(--color-primary);
+        & img {
+          height: 100%;
+          aspect-ratio: 3/4;
+          object-fit: contain;
+        }
+      }
+
+      &-params {
+        border: 1px solid var(--color-primary);
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+
+        & ul {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          max-width: 300px;
+
+          & li {
+            list-style: none;
+            width: 100%;
+            padding: 10px 0;
+            font-size: 20px;
+
+            &.price {
+              & .sale-block {
+                & .price__sale {
+                  position: relative;
+                  display: flex;
+                  align-items: center;
+
+                  & .sale {
+                    display: block;
+                    right: 0;
+                    top: 0;
+                    font-size: 14px;
+                    background-color: red;
+                    border-radius: 50%;
+                    width: 65px;
+                    height: 30px;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        & .btn-block {
+          margin-top: 20px;
+
+          & .btn__buy {
+            width: 100%;
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -29,10 +29,10 @@ const DeviceCard: FC<DeviceCardProps> = ({ device }) => {
               <span className={styles["price__sale"]}>
                 {device.price - (device.sale / 100) * device.price} $
               </span>
-              <span className={styles.sale}>{device.sale}%</span>
+              <span className={styles.sale}>sale {device.sale}%</span>
             </div>
           ) : (
-            device.price
+            device.price + "$"
           )}
         </div>
         <div>{device.name}</div>

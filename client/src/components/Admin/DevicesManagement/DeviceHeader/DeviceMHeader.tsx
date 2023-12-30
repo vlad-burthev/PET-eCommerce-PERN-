@@ -76,13 +76,13 @@ const DeviceMHeader: FC<I_DeviceMHeader> = ({ setFilter }) => {
   };
 
   useEffect(() => {
-    if (isSuccess && !isError) {
+    if (isSuccess) {
       setPrice("");
       setName("");
-      setBrandId("");
-      setTypeId("");
+      setBrandId(0);
+      setTypeId(0);
       setDescription("");
-      setFile(null);
+      setFile([]);
       setSale("");
       setInfo([]);
       setShowForm(false);
@@ -153,7 +153,7 @@ const DeviceMHeader: FC<I_DeviceMHeader> = ({ setFilter }) => {
             }
             name="types"
           >
-            <option>types</option>
+            <option value={0}>types</option>
             {types &&
               types.map((type: I_Type) => (
                 <option key={type.id} value={type.id}>
@@ -172,7 +172,7 @@ const DeviceMHeader: FC<I_DeviceMHeader> = ({ setFilter }) => {
             }
             name="brands"
           >
-            <option>brands</option>
+            <option value={0}>brands</option>
             {brands &&
               brands.map((brand: I_Type) => (
                 <option key={brand.id} value={brand.id}>

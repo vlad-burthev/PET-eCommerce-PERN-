@@ -122,7 +122,7 @@ export const deleteDevice = async (req, res, next) => {
 export const changeDevice = async (req, res, next) => {
   try {
     const { slug } = req.params;
-    const { name, price, description, sale } = req.body;
+    const { name, price, description, sale = 0 } = req.body;
 
     const existingDevice = await Device.findOne({
       where: { slug },
@@ -132,10 +132,11 @@ export const changeDevice = async (req, res, next) => {
       return next(ApiError.notFound("Device not found"));
     }
 
-    existingDevice.name = name || existingDevice.name;
+    existingDevice.name = name.length === 0 ? existingDevice.name : name;
     existingDevice.price = price || existingDevice.price;
     existingDevice.description = description || existingDevice.description;
-    existingDevice.sale = sale || existingDevice.description;
+    existingDevice.sale =
+      sale !== null || undefined ? sale : existingDevice.sale;
     if (name) {
       const newSlug = convertSlug(name);
       existingDevice.slug = newSlug || existingDevice.slug;
@@ -212,7 +213,9 @@ export const getAllDevices = async (req, res, next) => {
       });
     }
 
-    return res.status(200).json(devices);
+    const count = await Device.findAndCountAll();
+
+    return res.status(200).json({ rows: devices.rows, count: count.count });
   } catch (error) {
     return next(ApiError.badRequest(error.message));
   }
@@ -224,6 +227,7 @@ export const addRating = async (req, res, next) => {
     const { slug } = req.params;
     const userId = req.user.id;
     const existingUser = await User.findOne({ where: { id: userId } });
+
     if (!existingUser) {
       return next(ApiError.badRequest("User does not exist"));
     }
@@ -235,7 +239,7 @@ export const addRating = async (req, res, next) => {
     }
 
     const [existingRating, created] = await DeviceRating.findOrCreate({
-      where: { userId, slug },
+      where: { userId, deviceId: existingDevice.id },
       defaults: { rating },
     });
 

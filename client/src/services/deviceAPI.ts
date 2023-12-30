@@ -5,7 +5,7 @@ export const deviceAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL + "api/device/",
   }),
-  tagTypes: ["Devices"],
+  tagTypes: ["Devices", "Rating"],
   endpoints: (build) => ({
     fetchAllDevices: build.query({
       query: ({ limit = 12, page = 1, brandId = null, typeId = null }) => ({
@@ -40,7 +40,7 @@ export const deviceAPI = createApi({
     changeDevice: build.mutation({
       query: ({ slug, name, price, description, sale }) => ({
         url: `change_device/${slug}`,
-        method: "PUT",
+        method: "POST",
         body: { name, price, description, sale },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -53,6 +53,18 @@ export const deviceAPI = createApi({
         url: `get_one_device/${slug}`,
         method: "GET",
       }),
+      providesTags: ["Rating"],
+    }),
+    addRating: build.mutation({
+      query: ({ slug, rating }) => ({
+        url: `add_rating/${slug}`,
+        method: "POST",
+        body: { rating },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+      invalidatesTags: ["Rating"],
     }),
   }),
 });
@@ -63,4 +75,5 @@ export const {
   useDeleteDeviceMutation,
   useChangeDeviceMutation,
   useFetchOneDeviceQuery,
+  useAddRatingMutation,
 } = deviceAPI;

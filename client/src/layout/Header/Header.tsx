@@ -33,8 +33,6 @@ const Header: FC = () => {
   const dispatch = useAppDispatch();
   const logOutHandler = () => {
     dispatch(logOut());
-    dispatch(setIsLogin(false));
-    dispatch(setIsAdmin(false));
   };
 
   const { isLogin, isAdmin } = useAppSelector((state) => state.user);
