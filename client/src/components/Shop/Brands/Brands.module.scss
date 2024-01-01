@@ -1,6 +1,12 @@
 .list {
+  position: sticky;
+  top: 60px;
+  padding: 20px;
+  background-color: var(--color-white);
   display: flex;
   flex-wrap: wrap;
+  border-bottom: 2px solid var(--color-primary);
+  z-index: 9;
 
   & .brands {
     display: inline-block;

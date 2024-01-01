@@ -9,6 +9,7 @@ import { typeAPI } from "../services/typeAPI";
 import { userAPI } from "../services/userAPI";
 import { brandAPI } from "../services/brandAPI";
 import { deviceAPI } from "../services/deviceAPI";
+import { cartAPI } from "../services/cartAPI";
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -17,6 +18,7 @@ export const store = configureStore({
       typeAPI.middleware,
       userAPI.middleware,
       brandAPI.middleware,
+      cartAPI.middleware,
       deviceAPI.middleware
     ),
 });

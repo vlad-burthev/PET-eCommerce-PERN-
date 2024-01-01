@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { useEffect, type FC } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 
@@ -23,11 +23,8 @@ import { UILink } from "../../components/UI-Kit/UILink/UILink";
 import ShopIcon from "../../assets/images/shopIcon.svg?react";
 import CartIcon from "../../assets/images/cartIcon.svg?react";
 import { UIButton } from "../../components/UI-Kit/UIButton/UIButton";
-import {
-  logOut,
-  setIsAdmin,
-  setIsLogin,
-} from "../../store/userSlice/userSlice";
+import { logOut } from "../../store/userSlice/userSlice";
+import { useLazyFetchCartAmountQuery } from "../../services/cartAPI";
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
@@ -36,6 +33,17 @@ const Header: FC = () => {
   };
 
   const { isLogin, isAdmin } = useAppSelector((state) => state.user);
+  const [fetchCartAmount, { data }] = useLazyFetchCartAmountQuery();
+
+  const fetchCartAmountHandle = async () => {
+    await fetchCartAmount("");
+  };
+
+  useEffect(() => {
+    if (isLogin) {
+      fetchCartAmountHandle();
+    }
+  }, [isLogin]);
 
   return (
     <header className={styles.header}>
@@ -72,7 +80,9 @@ const Header: FC = () => {
                   to={cartPath}
                   appearance="ghost"
                 >
-                  cart <CartIcon />
+                  cart
+                  <CartIcon />
+                  {data ? <span className={styles["item"]}>{data}</span> : ""}
                 </UILink>
 
                 <UIButton onClick={logOutHandler} appearance="danger">

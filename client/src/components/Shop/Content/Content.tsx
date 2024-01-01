@@ -31,9 +31,8 @@ const Content: FC<ContentProps> = () => {
             <DeviceCard device={device} key={device.id} />
           ))}
       </div>
-      {/* {data?.count > 10 && (
-        <Pagination totalPages={data?.count ? data?.count : 10} />
-      )} */}
+
+      {data && <Pagination count={data.count} />}
     </div>
   );
 };

@@ -11,6 +11,7 @@ import DeviceMHeader from "./DeviceHeader/DeviceMHeader";
 import DeviceCard from "./DeviceCard/DeviceCard";
 import DeviceChange from "./DeviceChange/DeviceChange";
 import ReactPaginate from "react-paginate";
+import Pagination from "../../Pagination/Pagination";
 
 const DevicesManagement = () => {
   const { data, isSuccess }: any = useFetchAllDevicesQuery("");
@@ -61,16 +62,6 @@ const DevicesManagement = () => {
               />
             ))}
         </div>
-        <ReactPaginate
-          className={styles.paginate}
-          breakLabel="..."
-          nextLabel=">"
-          pageRangeDisplayed={5}
-          pageCount={Math.ceil(filteredDevice.length / 12)}
-          previousLabel="<"
-          renderOnZeroPageCount={null}
-          onPageChange={handlePageClick}
-        />
       </div>
     </>
   );

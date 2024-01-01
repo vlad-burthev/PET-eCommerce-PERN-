@@ -1,54 +1,60 @@
-import type { FC } from "react";
+import { useState, type FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { setPage } from "../../store/deviceSlice/deviceSlice";
 
-interface PaginationProps {}
+import styles from "./Pagination.module.scss";
+import classNames from "classnames";
 
-const Pagination: FC<PaginationProps> = ({ totalPages = 24 }) => {
-  const { page: currentPage } = useAppSelector((state) => state.device);
+interface PaginationProps {
+  count: number;
+}
+
+const Pagination: FC<PaginationProps> = ({ count }) => {
+  const [pages, setPages] = useState<number[]>([]);
+  const { page } = useAppSelector((state) => state.device);
   const dispatch = useAppDispatch();
-  const handleClick = (page) => {
-    const newPage = Math.min(Math.max(page, 1), totalPages);
-    dispatch(setPage(page));
+
+  const prevPageHandler = () => {
+    if (page !== 1) {
+      dispatch(setPage(page - 1));
+    }
+  };
+  const nextPageHandler = () => {
+    if (page !== Math.ceil(count / 12)) {
+      dispatch(setPage(page + 1));
+    }
+  };
+  const selectPageHandler = (selectedPage: number) => {
+    dispatch(setPage(selectedPage));
   };
 
-  const pagesToShow = 5;
-
-  const firstPages = Array.from(
-    { length: Math.min(pagesToShow, totalPages) },
-    (_, i) => i + 1
-  );
-  const lastPages = Array.from(
-    { length: Math.min(pagesToShow, totalPages - pagesToShow) },
-    (_, i) => totalPages - pagesToShow + i + 1
-  );
+  useEffect(() => {
+    const pagesArray = new Array(Math.ceil(count / 12)).fill(0);
+    setPages(pagesArray);
+  }, [count]);
 
   return (
-    <ul className="pagination">
-      {firstPages.map((page) => (
-        <li
-          onClick={() => handleClick(page)}
-          key={page}
-          className={`pagination-item ${currentPage === page ? "active" : ""}`}
-        >
-          {page}
-        </li>
-      ))}
-
-      {totalPages > pagesToShow && (
-        <li className="pagination-item ellipsis">...</li>
-      )}
-
-      {lastPages.map((page) => (
-        <li
-          key={page}
-          onClick={() => handleClick(page)}
-          className={`pagination-item ${currentPage === page ? "active" : ""}`}
-        >
-          {page}
-        </li>
-      ))}
-    </ul>
+    <div className={styles.pagination}>
+      <div onClick={prevPageHandler} className={styles.btn}>
+        {"<"}
+      </div>
+      {pages &&
+        pages.map((_, i) => (
+          <div
+            onClick={() => selectPageHandler(i + 1)}
+            className={classNames(
+              styles["btn__select-page"],
+              page === i + 1 ? styles.active : ""
+            )}
+            key={i}
+          >
+            {i + 1}
+          </div>
+        ))}
+      <div onClick={nextPageHandler} className={styles.btn}>
+        {">"}
+      </div>
+    </div>
   );
 };
 

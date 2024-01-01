@@ -7,10 +7,17 @@ import { DeviceCardProps } from "./DeviceCard.props";
 import { Link } from "react-router-dom";
 import { devicePath } from "../../../utils/constants/routes";
 import { UIButton } from "../../UI-Kit/UIButton/UIButton";
+import { useAddDeviceToCartMutation } from "../../../services/cartAPI";
 
 const DeviceCard: FC<DeviceCardProps> = ({ device }) => {
-  const addDeviceToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const [addDeviceToCart] = useAddDeviceToCartMutation();
+
+  const addDeviceToCartHandler = async (
+    e: React.MouseEvent<HTMLButtonElement>,
+    deviceId: number
+  ) => {
     e.preventDefault();
+    await addDeviceToCart(deviceId);
   };
 
   return (
@@ -40,7 +47,9 @@ const DeviceCard: FC<DeviceCardProps> = ({ device }) => {
         <div>{device.type?.name}</div>
       </div>
       <UIButton
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => addDeviceToCart(e)}
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+          addDeviceToCartHandler(e, device.id)
+        }
         styleClass={styles.btn}
         appearance="primary"
       >

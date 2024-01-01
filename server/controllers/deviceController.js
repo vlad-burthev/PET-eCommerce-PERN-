@@ -201,7 +201,7 @@ export const getAllDevices = async (req, res, next) => {
 
     if (typeId && brandId) {
       devices = await Device.findAndCountAll({
-        where: { brandId, brandId },
+        where: { brandId, typeId },
         limit,
         offset,
         include: [

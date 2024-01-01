@@ -13,6 +13,7 @@
     margin-bottom: 10px;
 
     & img {
+      width: 100%;
       aspect-ratio: 4/3;
       object-fit: contain;
     }
@@ -27,23 +28,28 @@
       }
       & .price__sale {
         margin-left: 10px;
+
         font-size: 22px;
+        font-weight: bolder;
         color: red;
       }
       & .sale {
-        display: block;
         position: absolute;
         right: 15px;
         top: 0;
-        font-size: 14px;
-        background-color: red;
-        border-radius: 50%;
         width: 65px;
         height: 30px;
-        color: #fff;
+
         display: flex;
         align-items: center;
         justify-content: center;
+
+        background-color: red;
+
+        border-radius: 50%;
+
+        font-size: 14px;
+        color: #fff;
       }
     }
   }

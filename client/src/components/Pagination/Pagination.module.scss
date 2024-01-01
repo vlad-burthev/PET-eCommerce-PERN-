@@ -1,0 +1,38 @@
+.pagination {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+
+  & .btn {
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: var(--color-olive);
+    color: var(--color-white);
+    cursor: pointer;
+    &:hover {
+      background-color: var(--color-olive-dark);
+    }
+  }
+
+  & .btn__select-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: var(--color-olive);
+    color: var(--color-white);
+    transition: 0.2s;
+
+    &:hover {
+      background-color: var(--color-olive-dark);
+    }
+
+    &.active {
+      background-color: var(--color-primary);
+    }
+  }
+}
