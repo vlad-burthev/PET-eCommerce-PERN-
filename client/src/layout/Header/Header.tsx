@@ -1,4 +1,4 @@
-import { useEffect, type FC } from "react";
+import { useEffect, type FC, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 
@@ -9,6 +9,7 @@ import styles from "./Header.module.scss";
 import {
   adminPath,
   cartPath,
+  devicePath,
   shopPath,
   signInPath,
   signUpPath,
@@ -25,6 +26,12 @@ import CartIcon from "../../assets/images/cartIcon.svg?react";
 import { UIButton } from "../../components/UI-Kit/UIButton/UIButton";
 import { logOut } from "../../store/userSlice/userSlice";
 import { useLazyFetchCartAmountQuery } from "../../services/cartAPI";
+import {
+  useFetchAllDevicesQuery,
+  useLazyFetchAllDevicesQuery,
+} from "../../services/deviceAPI";
+import { useFilteredArray } from "../../hooks/useFilteredArray";
+import { I_Full_Device } from "../../components/Admin/DevicesManagement/DeviceCard/DeviceCard.props";
 
 const Header: FC = () => {
   const dispatch = useAppDispatch();
@@ -38,6 +45,23 @@ const Header: FC = () => {
   const fetchCartAmountHandle = async () => {
     await fetchCartAmount("");
   };
+
+  const { data: devices, isSuccess } = useFetchAllDevicesQuery({ limit: 100 });
+  const [deviceName, setDeviceName] = useState("");
+  const [searchDevice, setSearchDevice] = useState<I_Full_Device[]>([]);
+  const [showSearch, setShowSearch] = useState(false);
+  const [linkClicked, setLinkClicked] = useState(false);
+
+  const filteredData = useFilteredArray<I_Full_Device>({
+    data: devices?.rows,
+    isSuccess,
+    filter: deviceName,
+  });
+
+  useEffect(() => {
+    const limitedData = filteredData.slice(0, 5);
+    setSearchDevice(limitedData);
+  }, [filteredData]);
 
   useEffect(() => {
     if (isLogin) {
@@ -57,10 +81,42 @@ const Header: FC = () => {
 
           <div className={styles.search}>
             <UIInput
-              placeholder="enter device name, type, brand..."
+              onChange={(e) => setDeviceName(e.target.value)}
+              placeholder="enter device name"
               type="text"
               apearence="search"
+              onFocus={() => setShowSearch(true)}
+              onBlur={() => {
+                setTimeout(() => {
+                  if (!linkClicked) {
+                    setShowSearch(false);
+                  }
+                  setLinkClicked(false);
+                }, 200); // Измените задержку по вашему усмотрению
+              }}
             />
+            {showSearch && (
+              <div className={styles.list}>
+                {searchDevice.map((device) => (
+                  <Link
+                    to={devicePath + device.slug}
+                    className={styles["list-item"]}
+                    key={device.id}
+                    onClick={() => setLinkClicked(true)}
+                  >
+                    <img
+                      src={import.meta.env.VITE_BASE_URL + device.image}
+                      alt={device.name + " image"}
+                    />
+                    <div className={styles["item-info"]}>
+                      <span>name: {device.name}</span>
+                      <span>price: {device.price}$</span>
+                      <span>sale:{device.sale}%</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={styles["btn-box"]}>

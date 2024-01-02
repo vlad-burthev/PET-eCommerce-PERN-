@@ -156,66 +156,31 @@ export const getAllDevices = async (req, res, next) => {
 
     let offset = page * limit - limit;
 
-    let devices;
+    let whereClause = {};
 
-    if (!typeId && !brandId) {
-      devices = await Device.findAndCountAll({
-        limit,
-        offset,
-        include: [
-          { model: DeviceRating, as: "rating" },
-          { model: DeviceInfo, as: "info" },
-          { model: Brand, as: "brand", attributes: ["name"] },
-          { model: Type, as: "type", attributes: ["name"] },
-        ],
-      });
+    if (typeId) {
+      whereClause.typeId = typeId;
     }
 
-    if (typeId && !brandId) {
-      devices = await Device.findAndCountAll({
-        where: { typeId },
-        limit,
-        offset,
-        include: [
-          { model: DeviceRating, as: "rating" },
-          { model: DeviceInfo, as: "info" },
-          { model: Brand, as: "brand", attributes: ["name"] },
-          { model: Type, as: "type", attributes: ["name"] },
-        ],
-      });
+    if (brandId) {
+      whereClause.brandId = brandId;
     }
 
-    if (!typeId && brandId) {
-      devices = await Device.findAndCountAll({
-        where: { brandId },
-        limit,
-        offset,
-        include: [
-          { model: DeviceRating, as: "rating" },
-          { model: DeviceInfo, as: "info" },
-          { model: Brand, as: "brand", attributes: ["name"] },
-          { model: Type, as: "type", attributes: ["name"] },
-        ],
-      });
-    }
+    const devices = await Device.findAndCountAll({
+      where: whereClause,
+      limit,
+      offset,
+      include: [
+        { model: DeviceRating, as: "rating" },
+        { model: DeviceInfo, as: "info" },
+        { model: Brand, as: "brand", attributes: ["name"] },
+        { model: Type, as: "type", attributes: ["name"] },
+      ],
+    });
 
-    if (typeId && brandId) {
-      devices = await Device.findAndCountAll({
-        where: { brandId, typeId },
-        limit,
-        offset,
-        include: [
-          { model: DeviceRating, as: "rating" },
-          { model: DeviceInfo, as: "info" },
-          { model: Brand, as: "brand", attributes: ["name"] },
-          { model: Type, as: "type", attributes: ["name"] },
-        ],
-      });
-    }
+    const count = await Device.count({ where: whereClause });
 
-    const count = await Device.findAndCountAll();
-
-    return res.status(200).json({ rows: devices.rows, count: count.count });
+    return res.status(200).json({ rows: devices.rows, count });
   } catch (error) {
     return next(ApiError.badRequest(error.message));
   }

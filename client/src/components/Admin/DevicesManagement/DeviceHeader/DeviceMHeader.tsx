@@ -8,7 +8,6 @@ import { UIInput } from "../../../UI-Kit/UIInput/UIInput";
 import { useFetchAllTypesQuery } from "../../../../services/typeAPI";
 import { I_Type } from "../../../../interfaces/interfaces";
 import { useFetchAllBrandsQuery } from "../../../../services/brandAPI";
-import { I_Full_Device } from "../DeviceCard/DeviceCard.props";
 
 interface I_Info {
   title: string;
@@ -82,7 +81,7 @@ const DeviceMHeader: FC<I_DeviceMHeader> = ({ setFilter }) => {
       setBrandId(0);
       setTypeId(0);
       setDescription("");
-      setFile([]);
+      setFile(null);
       setSale("");
       setInfo([]);
       setShowForm(false);

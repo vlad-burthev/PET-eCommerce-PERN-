@@ -8,13 +8,23 @@ import styles from "./DevicePage.module.scss";
 import { DevicePageProps } from "./DevicePage.prop";
 import Rating from "../../components/Rating/Rating";
 import { UIButton } from "../../components/UI-Kit/UIButton/UIButton";
+import { useAddDeviceToCartMutation } from "../../services/cartAPI";
+
+interface I_Info {
+  title: string;
+  description: string;
+  id: number;
+}
 
 const DevicePage: FC<DevicePageProps> = () => {
   const { slug } = useParams();
 
   const { data } = useFetchOneDeviceQuery(slug ? slug : "");
-  console.log(data);
 
+  const [addDeviceToCart] = useAddDeviceToCartMutation();
+  const addDeviceToCartHandler = async (deviceId: number) => {
+    await addDeviceToCart(deviceId);
+  };
   return (
     <>
       {data && (
@@ -30,7 +40,7 @@ const DevicePage: FC<DevicePageProps> = () => {
               <div className={styles.params}>
                 <h2>parameters:</h2>
                 {data.info &&
-                  data.info.map((info) => (
+                  data.info.map((info: I_Info) => (
                     <div className={styles["params-item"]} key={info.id}>
                       <span className={styles.title}>{info.title}</span>
                       <span className={styles.desc}>{info.description}</span>
@@ -59,10 +69,11 @@ const DevicePage: FC<DevicePageProps> = () => {
                 <Rating ratingArray={data.rating} slug={data.slug} />
                 <div className={styles["btn-block"]}>
                   <UIButton
+                    onClick={() => addDeviceToCartHandler}
                     styleClass={styles["btn__buy"]}
                     appearance="primary"
                   >
-                    buy
+                    add to cart
                   </UIButton>
                 </div>
               </div>

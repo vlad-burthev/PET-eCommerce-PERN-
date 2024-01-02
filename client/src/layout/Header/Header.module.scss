@@ -26,6 +26,48 @@
       }
     }
 
+    & .search {
+      position: relative;
+
+      & .list {
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid var(--color-primary);
+        width: 100%;
+        background-color: var(--color-white);
+        position: absolute;
+
+        &-item {
+          display: flex;
+          align-items: center;
+          margin: 10px 0;
+          padding: 5px;
+          color: var(--color-primary);
+          border: 1px solid transparent;
+          border-radius: 10px;
+
+          & img {
+            width: 60px;
+            aspect-ratio: 4/3;
+            object-fit: contain;
+          }
+
+          &:hover {
+            border-color: var(--color-olive);
+          }
+
+          & .item-info {
+            display: flex;
+
+            & span {
+              display: block;
+              margin: 10px;
+            }
+          }
+        }
+      }
+    }
+
     & .btn-box {
       display: flex;
       justify-content: space-evenly;

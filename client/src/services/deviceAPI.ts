@@ -76,4 +76,5 @@ export const {
   useChangeDeviceMutation,
   useFetchOneDeviceQuery,
   useAddRatingMutation,
+  useLazyFetchAllDevicesQuery,
 } = deviceAPI;

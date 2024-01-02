@@ -1,0 +1,60 @@
+.card {
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr auto;
+
+  & .img {
+    margin-bottom: 10px;
+    & img {
+      aspect-ratio: 4/3;
+      object-fit: contain;
+    }
+  }
+
+  & .info-block {
+    & .list {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  & .amount-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      color: #fff;
+      font-size: larger;
+      font-weight: 600;
+      cursor: pointer;
+
+      &.minus {
+        background-color: rgb(173, 49, 49);
+      }
+
+      &.add {
+        background-color: rgb(40, 152, 40);
+      }
+    }
+
+    & .amount {
+      border: 1px solid var(--color-primary);
+      padding: 5px 10px;
+      border-radius: 10px;
+      margin: 0px 20px;
+    }
+  }
+
+  & button {
+    width: 100%;
+  }
+}

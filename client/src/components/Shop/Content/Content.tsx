@@ -32,7 +32,7 @@ const Content: FC<ContentProps> = () => {
           ))}
       </div>
 
-      {data && <Pagination count={data.count} />}
+      {data?.count > 12 && <Pagination count={data.count} />}
     </div>
   );
 };
