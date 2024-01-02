@@ -1,4 +1,4 @@
-import { useState, type FC, useEffect, useRef } from "react";
+import { useState, type FC, useEffect } from "react";
 import classNames from "classnames";
 import { useAppDispatch } from "../../store/store";
 

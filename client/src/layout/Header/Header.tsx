@@ -1,4 +1,4 @@
-import { useEffect, type FC, useMemo, useState } from "react";
+import { useEffect, type FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 
@@ -26,10 +26,7 @@ import CartIcon from "../../assets/images/cartIcon.svg?react";
 import { UIButton } from "../../components/UI-Kit/UIButton/UIButton";
 import { logOut } from "../../store/userSlice/userSlice";
 import { useLazyFetchCartAmountQuery } from "../../services/cartAPI";
-import {
-  useFetchAllDevicesQuery,
-  useLazyFetchAllDevicesQuery,
-} from "../../services/deviceAPI";
+import { useFetchAllDevicesQuery } from "../../services/deviceAPI";
 import { useFilteredArray } from "../../hooks/useFilteredArray";
 import { I_Full_Device } from "../../components/Admin/DevicesManagement/DeviceCard/DeviceCard.props";
 

@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { type FC } from "react";
 
 //styles
 import styles from "./Sidebar.module.scss";
@@ -14,9 +14,8 @@ interface I_Type {
 }
 
 const Sidebar: FC = () => {
-  const { data, isLoading, isSuccess, error } = useFetchAllTypesQuery("");
+  const { data } = useFetchAllTypesQuery("");
 
-  const [selectedType, setSelectedType] = useState<number | null>(null);
   const { typeId } = useAppSelector((state) => state.device);
   const dispatch = useAppDispatch();
 

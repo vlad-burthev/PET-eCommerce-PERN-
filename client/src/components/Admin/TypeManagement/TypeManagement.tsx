@@ -14,20 +14,16 @@ import { useFilteredArray } from "../../../hooks/useFilteredArray";
 
 const TypeManagement: FC = () => {
   const [typeName, setTypeName] = useState("");
-  const { data, isSuccess, isError, isLoading, error } =
-    useFetchAllTypesQuery("");
+  const { data, isSuccess } = useFetchAllTypesQuery("");
 
-  const [createType, { isError: isErrorCreate, error: errorCreate }]: any =
-    useCreateTypeMutation();
+  const [createType, { error: errorCreate }]: any = useCreateTypeMutation();
   const [deleteType] = useDeleteTypeMutation();
 
   const [filter, setFilter] = useState<string>("");
 
   const filteredData = useFilteredArray<I_Type>({ data, isSuccess, filter });
 
-  const [createTypeSucces, setCreateTypeSucces] = useState<null | boolean>(
-    null
-  );
+  const [createTypeSucces] = useState<null | boolean>(null);
 
   const [typeNameError, setTypeNameError] = useState<null | string>(null);
 

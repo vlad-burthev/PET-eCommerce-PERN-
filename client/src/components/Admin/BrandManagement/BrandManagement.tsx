@@ -1,4 +1,4 @@
-import { useState, type FC, useMemo } from "react";
+import { useState, type FC } from "react";
 
 //styles
 import styles from "./BrandManagement.module.scss";
